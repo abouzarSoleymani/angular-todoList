@@ -1,8 +1,7 @@
 export const environment = {
-  name: 'production',
+  name: 'staging',
   production: true,
-  api_url: 'http://devapp01.icico.net.ir/evaluation/api/',
-  auth_api_url: 'http://devapp01.icico.net.ir/',
+  api_url: '/evaluation/api/',
   api_username: 'devadmin',
   api_password: 'password',
   evaluation_version: '1',

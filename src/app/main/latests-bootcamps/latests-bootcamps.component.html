@@ -1,0 +1,28 @@
+<!-- Latest bootcamps -->
+<section class="latest py-5 bg-light">
+  <div class="container">
+    <h3>Latest Bootcamps</h3>
+    <div class="card-group">
+      <div class="card mr-2" *ngFor="let bootcamp of latestBootcams">
+        <img src="./assets/img/image_1.jpg" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="bootcamp.html"
+            >{{bootcamp?.name}}
+              <span class="float-right badge badge-success">8.8</span></a
+            >
+          </h5>
+          <span class="badge badge-dark mb-2">{{bootcamp?.location?.city}}</span>
+          <p class="card-text">
+           {{bootcamp?.description}}
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+            >{{bootcamp.careers}}</small
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

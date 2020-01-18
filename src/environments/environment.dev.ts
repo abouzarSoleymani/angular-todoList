@@ -3,15 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  name: 'local',
-  production: false,
-  api_url: 'http://localhost:5000/api/v1/',
-  auth_api_url: 'http://devapp01.icico.net.ir/',
+  name: 'development',
+  production: true,
+  api_url: '/evaluation/api/',
   api_username: 'devadmin',
   api_password: 'password',
   evaluation_version: '1',
   google_tag_manager_id: '',
-  service_worker: false,
+  service_worker: true,
   evaluation_app_download_link: 'https://app.nicico.com/1?fallback=https://evaluation-app.com/download.html',
 };
 

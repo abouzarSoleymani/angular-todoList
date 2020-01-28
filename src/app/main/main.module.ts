@@ -10,6 +10,9 @@ import {FindBootcampsComponent} from './find-bootcamps/find-bootcamps.component'
 
 @NgModule({
   declarations: [HomeComponent, NavbarComponent, FindBootcampsComponent, LatestsBootcampsComponent],
+  exports: [
+    NavbarComponent
+  ],
   imports: [
     CommonModule,
     MainRoutingModule

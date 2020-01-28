@@ -1,5 +1,5 @@
 <!-- Register -->
-<section class="form mt-5">
+<!--<section class="form mt-5">
   <div class="container">
     <div class="row">
       <div class="col-md-6 m-auto">
@@ -95,33 +95,62 @@
       </div>
     </div>
   </div>
-</section>
+</section>-->
 
 
 
-<!--<div class="signup-content animated fadeIn">
+<div class="signup-content animated fadeIn">
   <mat-card>
     <mat-card-content>
       <div class="auth-wrapper">
         <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()">
           <h3 class="h3 mb-3 font-weight-normal text-center">Please sign up</h3>
-          <mat-form-field class="full-width-input"  appearance="outline">
-            <mat-label>Enter name</mat-label>
-            <input matInput type="text" formControlName="name" placeholder="Enter name" required>
+          <mat-form-field class="full-width-input"   appearance="outline">
+            <input matInput placeholder="name" formControlName="name" class="person-input">
+            <mat-hint align="end">{{signupForm.controls.name.value?.length || 0}}/10</mat-hint>
+            <mat-error *ngFor="let validation of user_validation_messages.name">
+              <mat-error class="error-message" *ngIf="signupForm.get('name').hasError(validation.type) && (signupForm.get('name').dirty || signupForm.get('name').touched)">{{validation.message}}</mat-error>
+            </mat-error>
           </mat-form-field>
-          <mat-form-field class="full-width-input "  appearance="outline">
-            <mat-label>Enter username</mat-label>
-            <input matInput type="text"  formControlName="username" placeholder="Enter username" required>
-          </mat-form-field>
-          <mat-form-field class="full-width-input "  appearance="outline">
-            <mat-label>password</mat-label>
-            <input matInput type="password"  formControlName="password" placeholder="Password" required>
-          </mat-form-field>
-          <button mat-raised-button color="primary" type="submit">Sign up</button>
 
+          <mat-form-field class="full-width-input"   appearance="outline">
+            <input matInput type="email" placeholder="Email" formControlName="email" required>
+            <mat-error *ngFor="let validation of user_validation_messages.email">
+              <mat-error class="error-message" *ngIf="signupForm.get('email').hasError(validation.type) && (signupForm.get('email').dirty || signupForm.get('email').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+
+
+          <div formGroupName="matching_passwords">
+            <mat-form-field class="full-width-input"   appearance="outline">
+              <input matInput type="password" placeholder="Password" formControlName="password" required>
+              <mat-error *ngFor="let validation of user_validation_messages.password">
+                <mat-error class="error-message" *ngIf="signupForm.get('matching_passwords').get('password').hasError(validation.type) && (signupForm.get('matching_passwords').get('password').dirty || signupForm.get('matching_passwords').get('password').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width-input"   appearance="outline">
+              <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password"  [errorStateMatcher]="parentErrorStateMatcher" required>
+              <mat-error *ngFor="let validation of user_validation_messages.confirm_password">
+                <mat-error class="error-message" *ngIf="(signupForm.get('matching_passwords').get('confirm_password').hasError(validation.type)|| signupForm.get('matching_passwords').hasError(validation.type)) && (signupForm.get('matching_passwords').get('confirm_password').dirty || signupForm.get('matching_passwords').get('confirm_password').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <mat-radio-group formControlName='role'>
+            <label>Role: </label> <br/><br/>
+            <mat-radio-button value="user">user</mat-radio-button>
+            <mat-radio-button value="publisher">publisher</mat-radio-button>
+            <mat-error *ngFor="let validation of user_validation_messages.role">
+              <mat-error class="error-message" *ngIf="signupForm.get('role').hasError(validation.type) && (signupForm.get('role').dirty || signupForm.get('role').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-radio-group>
+
+          <button mat-raised-button color="primary" type="submit">Sign up</button>
         </form>
+
       </div>
     </mat-card-content>
   </mat-card>
-</div>-->
+</div>
 

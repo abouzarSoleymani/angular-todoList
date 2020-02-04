@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import {config, Observable, of, throwError} from 'rxjs';
+import { Observable, of, throwError} from 'rxjs';
 import {catchError, map, mapTo, tap} from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {environment} from '../../../environments/environment';
-import { UserModel as User } from '../models/user.model';
-import {TokenModel} from '../models/token.model';
+import { UserModel as User} from '@app/core/models/user.model';
+import {TokenModel} from '@app/core/models/token.model';
+import {CONSTANST} from '@app/shared/utils/constanst';
+import {ApiResponseModel} from '@app/core/models/api.response.model';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
+
+  private loggedUser: string;
+
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
-  private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
-  private readonly USER_INFO = 'USER_INFO';
-  private loggedUser: string;
 
   constructor(
     private http: HttpClient,
@@ -25,32 +25,32 @@ export class AuthService {
   ) {
   }
 
-  // Sign-up
-  signUp(user: User): Observable<any> {
-    let api = `${environment.api_url}register-user`;
+  // register
+  register(user: User): Observable<any> {
+    let api = `${CONSTANST.routes.authorization.register}`;
     return this.http.post(api, user)
       .pipe(
         catchError(this.handleError)
       )
   }
 
-  // Sign-in
-  signIn(user: User) {
-    return this.http.post<any>(`${environment.api_url}signin`, user)
-      .subscribe((res: any) => {
-        this.doLoginUser(user.username, res);
-        this.getUserProfile(res._id).subscribe((res) => {
+  // log-in
+  login(user: User) {
+    return this.http.post<any>(`${CONSTANST.routes.authorization.login}`, user).pipe(
+      catchError(this.handleError)
+    ).subscribe((res: any) => {
+        this.doLoginUser(user.email, res);
+        this.getUserProfile().subscribe((res) => {
           this.currentUser = res;
-          this.router.navigate(['user-profile/' + res.msg._id]);
+          this.storeUserInfo(res);
+          this.router.navigate(['/'])
         })
       })
   }
 
 
   logout() {
-    return this.http.post<any>(`${environment.api_url}logout`, {
-      'refreshToken': this.getRefreshToken()
-    }).pipe(
+    return this.http.get<any>(`${CONSTANST.routes.authorization.logout}`).pipe(
       tap(() => this.doLogoutUser()),
       mapTo(true),
       catchError(error => {
@@ -60,11 +60,11 @@ export class AuthService {
   }
 
   // User profile
-  getUserProfile(id): Observable<any> {
-    let api = `${environment.api_url}user-profile/${id}`;
+  getUserProfile(): Observable<any> {
+    let api = `${CONSTANST.routes.authorization.me}`;
     return this.http.get(api, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {}
+      map((res: ApiResponseModel) => {
+        return res.data || {}
       }),
       catchError(this.handleError)
     )
@@ -77,21 +77,20 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.post<any>(`${environment.api_url}token`, {
-      'refreshToken': this.getRefreshToken(), ...this.getUserInfo()
+    return this.http.post<any>(`${CONSTANST.routes.authorization.refreshToken}`, {
+      'token': this.getRefreshToken()
     }).pipe(tap((tokens: TokenModel) => {
       this.storeJwtToken(tokens.token);
     }));
   }
 
   getJwtToken() {
-    return localStorage.getItem(this.JWT_TOKEN);
+    return localStorage.getItem(CONSTANST.storageToken.JWT_TOKEN);
   }
 
   private doLoginUser(username: string, tokens: TokenModel) {
     this.loggedUser = username;
     this.storeTokens(tokens);
-    this.storeUserInfo(tokens);
   }
 
   private doLogoutUser() {
@@ -100,28 +99,27 @@ export class AuthService {
   }
 
   private getRefreshToken() {
-    return localStorage.getItem(this.REFRESH_TOKEN);
+    return localStorage.getItem(CONSTANST.storageToken.REFRESH_TOKEN);
   }
 
   private storeJwtToken(jwt: string) {
-    localStorage.setItem(this.JWT_TOKEN, jwt);
+    localStorage.setItem(CONSTANST.storageToken.JWT_TOKEN, jwt);
   }
 
   private storeTokens(tokens: TokenModel) {
-    localStorage.setItem(this.JWT_TOKEN, tokens.token);
-    localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
+    localStorage.setItem(CONSTANST.storageToken.JWT_TOKEN, tokens.token);
+    localStorage.setItem(CONSTANST.storageToken.REFRESH_TOKEN, tokens.refreshToken);
   }
   public getUserInfo() {
-    return JSON.parse(localStorage.getItem(this.USER_INFO));
+    return JSON.parse(localStorage.getItem(CONSTANST.storageToken.USER_INFO));
   }
-  private storeUserInfo(tokens: TokenModel){
-    let userInfo = {username: tokens.username, _id: tokens._id};
-    localStorage.setItem(this.USER_INFO, JSON.stringify(userInfo));
+  private storeUserInfo(userInfo: User) {
+    localStorage.setItem(CONSTANST.storageToken.USER_INFO, JSON.stringify(userInfo));
   }
   private removeTokens() {
-    localStorage.removeItem(this.JWT_TOKEN);
-    localStorage.removeItem(this.REFRESH_TOKEN);
-    localStorage.removeItem(this.USER_INFO);
+    localStorage.removeItem(CONSTANST.storageToken.JWT_TOKEN);
+    localStorage.removeItem(CONSTANST.storageToken.REFRESH_TOKEN);
+    localStorage.removeItem(CONSTANST.storageToken.USER_INFO);
   }
 
 

@@ -1,26 +1,26 @@
 
-<div class="signin-content animated fadeIn">
+<div class="login-content animated fadeIn">
   <mat-card>
     <mat-card-content>
-      <img src="../../../assets/img/1.png" width="200px">
-      <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
+      <img class='image-login' src="../../../assets/img/1.png" >
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
         <mat-form-field class="full-width-input"  appearance="outline">
           <input matInput placeholder="email" formControlName="email" required>
-          <mat-error *ngIf="isFieldInvalid('email')">
-            Please inform your email
+          <mat-error *ngFor="let validation of user_validation_login_messages.email">
+            <mat-error class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">{{validation.message}}</mat-error>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width-input separate"  appearance="outline">
           <input matInput type="password" placeholder="Password" formControlName="password" required>
-          <mat-error *ngIf="isFieldInvalid('password')">
-            Please inform your password
+          <mat-error *ngFor="let validation of user_validation_login_messages.password">
+            <mat-error class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">{{validation.message}}</mat-error>
           </mat-error>
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit">Login</button>
       </form>
-      <p>	Forgot Password? <a href="reset-password.html">Reset Password</a></p>
+      <p>Forgot Password? <a href="reset-password.html">Reset Password</a></p>
     </mat-card-content>
   </mat-card>
 </div>

@@ -1,3 +1,6 @@
 export class ApiResponseModel{
-  result: any;
+  data: any;
+  count: number;
+  pagination: any;
+  success: boolean;
 }

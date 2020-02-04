@@ -5,14 +5,30 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MessageService} from './core/services/message.service';
 import {AuthInterceptor} from './core/services/authconfig.interceptor';
+import { LayoutComponent } from './components/layout/layout.component';
+import {MainModule} from './main/main.module';
+import {ContentModule} from './components/content/content.module';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {Translations} from '@app/core/services/translation';
+import {from} from 'rxjs';
+import {pluck} from 'rxjs/operators';
+
+// Core.module
+export class WebpackTranslateLoader implements TranslateLoader {
+  getTranslation(lang: string) {
+    return from(import(`../assets/i18n/${lang}.ts`)).pipe(pluck('default'));
+  }
+}
 
 @NgModule({
   declarations: [
     AppComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +37,15 @@ import {AuthInterceptor} from './core/services/authconfig.interceptor';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    MainModule,
+    ContentModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: WebpackTranslateLoader
+      }
+    })
   ],
   providers: [
     {
@@ -29,7 +53,8 @@ import {AuthInterceptor} from './core/services/authconfig.interceptor';
       useClass: AuthInterceptor,
       multi: true
     },
-    MessageService
+    MessageService,
+    Translations
     ],
   bootstrap: [AppComponent]
 })

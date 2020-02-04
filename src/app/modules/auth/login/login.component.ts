@@ -5,11 +5,22 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class SigninComponent implements  OnInit {
-  signinForm: FormGroup;
+export class LoginComponent implements  OnInit {
+  loginForm: FormGroup;
+  user_validation_login_messages = {
+    'email': [
+      { type: 'required', message: 'Email is required' },
+      { type: 'email', message: 'Enter a valid email' }
+    ],
+    'password': [
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'Password must be at least 5 characters long' },
+      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+    ]
+  }
 private formSubmitAttempt: boolean;
 
   constructor(
@@ -17,9 +28,11 @@ private formSubmitAttempt: boolean;
     public authService: AuthService,
     public router: Router
 ) {
-    this.signinForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+    this.loginForm = this.fb.group({
+      email: ['' ],
+      password: [''],
+      // email: ['', [Validators.required, Validators.email] ],
+      // password: ['', [Validators.required, Validators.minLength(5), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]],
     })
   }
 
@@ -27,15 +40,17 @@ private formSubmitAttempt: boolean;
 
   isFieldInvalid(field: string) {
     return (
-      (!this.signinForm.get(field).valid && this.signinForm.get(field).touched) ||
-      (this.signinForm.get(field).untouched && this.formSubmitAttempt)
+      (!this.loginForm.get(field).valid && this.loginForm.get(field).touched) ||
+      (this.loginForm.get(field).untouched && this.formSubmitAttempt)
     );
   }
 
   loginUser() {
-    if (this.signinForm.valid) {
-      this.authService.signIn(this.signinForm.value);
-    }
-    this.formSubmitAttempt = true;
+    console.log(this.loginForm)
+    if (!this.loginForm.valid)
+      return;
+   this.authService.login(this.loginForm.value)
+
+
   }
 }

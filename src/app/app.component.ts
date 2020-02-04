@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Translations} from '@app/core/services/translation';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bootcamp';
+  constructor(
+    private translateService: TranslateService
+  ) {
+    this.translateService.setDefaultLang('en');
+  }
+
 }

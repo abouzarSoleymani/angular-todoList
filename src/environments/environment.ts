@@ -5,7 +5,7 @@
 export const environment = {
   name: 'local',
   production: false,
-  api_url: 'http://localhost:5000/api/v1/',
+  api_url: '/api/',
   auth_api_url: 'http://devapp01.icico.net.ir/',
   api_username: 'devadmin',
   api_password: 'password',

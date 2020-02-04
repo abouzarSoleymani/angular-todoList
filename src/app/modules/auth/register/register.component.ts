@@ -9,12 +9,12 @@ import {
   ParentErrorStateMatcher,
 } from '../../../shared/validators';
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class SignupComponent implements OnInit {
-  signupForm: FormGroup;
+export class RegisterComponent implements OnInit {
+  registerForm: FormGroup;
   matching_passwords_group: FormGroup;
   parentErrorStateMatcher = new ParentErrorStateMatcher();
 
@@ -65,7 +65,7 @@ export class SignupComponent implements OnInit {
       return PasswordValidator.areEqual(formGroup);
     });
 
-    this.signupForm = this.fb.group({
+    this.registerForm = this.fb.group({
       name: new FormControl(null,
         Validators.compose([
           Validators.minLength(5),
@@ -82,22 +82,21 @@ export class SignupComponent implements OnInit {
   }
 
   registerUser() {
-    if(this.signupForm.invalid)
+    if(this.registerForm.invalid)
       return;
-    let signupValue = {
+    let registerValue = {
       _id: null,
-      name: this.signupForm.get('name').value,
-      email: this.signupForm.get('email').value,
-      password: this.signupForm.get('matching_passwords').value.password,
-      role: this.signupForm.get('role').value
+      name: this.registerForm.get('name').value,
+      email: this.registerForm.get('email').value,
+      password: this.registerForm.get('matching_passwords').value.password,
+      role: this.registerForm.get('role').value
     }
-    console.log(signupValue)
-    this.authService.signUp(signupValue).subscribe((res) => {
+    this.authService.register(registerValue).subscribe((res) => {
       if (res) {
         console.log(res)
         this.messageService.showErrorMessage('ثبت نام کاربر با موفقیت انجام شد');
-        this.signupForm.reset()
-        this.router.navigate(['./sign-in']);
+        this.registerForm.reset()
+        this.router.navigate(['auth/login']);
       }
     })
   }

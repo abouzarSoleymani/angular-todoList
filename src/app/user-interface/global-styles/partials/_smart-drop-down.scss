@@ -1,0 +1,23 @@
+.smart-drop-down {
+  .bottom-sheet-only {
+    display: none;
+  }
+
+  &.is-drop-down {
+    .mat-dialog-title, .mat-dialog-actions {
+      display: none;
+    }
+  }
+
+  &.is-bottom-sheet {
+    padding: 0 !important;
+
+    .bottom-sheet-only {
+      display: block;
+    }
+
+    .mat-dialog-actions {
+      display: none;
+    }
+  }
+}

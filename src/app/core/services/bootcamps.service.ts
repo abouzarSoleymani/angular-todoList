@@ -9,6 +9,6 @@ export class BootcampsService {
   constructor(private api: ApiService) { }
 
   getLatestBootcamps(): Observable<any> {
-    return this.api.get('bootcamps');
+    return this.api.get('todoList');
   }
 }

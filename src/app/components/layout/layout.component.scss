@@ -1,0 +1,13 @@
+
+
+content {
+  position: relative;
+  display: flex;
+  z-index: 1;
+  flex: 1 0 auto;
+  padding-top: 56px;
+ // padding-bottom: 34px;
+  height: calc(100vh - 34px);
+  overflow: auto;
+  flex-direction: column;
+}

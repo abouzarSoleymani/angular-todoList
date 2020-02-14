@@ -1,1 +1,10 @@
+<app-splash></app-splash>
 <router-outlet></router-outlet>
+<div class="install-app-bar" *ngIf="installEvent && showInstallBar">
+    <span class="close-icon" (click)="closeInstallPrompt()">
+      <img src="./assets/public-icons/close-white.svg" alt="close">
+    </span>
+  <img class="evaluation-icon" src="./assets/logo/icon.png" alt="logo">
+  <span class="title">install Application</span>
+  <a class="install-btn" target="_blank" (click)="installPwa()">نصب</a>
+</div>

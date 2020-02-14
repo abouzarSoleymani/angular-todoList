@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import {SharedModule} from '../../shared/shared.module';
 import {FooterComponent} from './footer.component';
+import {SharedModule} from '@app/shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -18,6 +15,4 @@ import {FooterComponent} from './footer.component';
         FooterComponent
     ]
 })
-export class FooterModule
-{
-}
+export class FooterModule {}

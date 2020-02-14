@@ -1,0 +1,48 @@
+.form-secondary-text,
+.form-primary-text {
+  text-align: center;
+  direction: rtl;
+  line-height: 1.5em;
+}
+
+.form-primary-text {
+  color: $primary-text-color-white;
+  font-size: $primary-font-size;
+}
+
+.form-secondary-text {
+  margin-top: 8px;
+  font-weight: 100;
+  color: $primary-text-color-black;
+  font-size: $secondary-font-size;
+}
+
+.custom-validation-error {
+  margin-bottom: 20px;
+  font-size: $secondary-font-size;
+  margin-top: -$secondary-font-size;
+}
+
+.clearable {
+  position: relative;
+
+  [input-clear-icon] {
+    left: 0;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+  }
+
+  input {
+    padding-left: 1.8em;
+    box-sizing: border-box;
+  }
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: inherit;
+  -webkit-box-shadow: 0 0 0 1000px $shadow-color inset;
+}

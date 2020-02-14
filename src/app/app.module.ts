@@ -17,6 +17,12 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {Translations} from '@app/core/services/translation';
 import {from} from 'rxjs';
 import {pluck} from 'rxjs/operators';
+import {FooterModule} from '@app/components/footer/footer.module';
+import {NavbarComponent} from '@app/components/navbar/navbar.component';
+import {NavbarModule} from '@app/components/navbar/navbar.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import {SplashComponent} from '@app/components/splash/splash.component';
 
 // Core.module
 export class WebpackTranslateLoader implements TranslateLoader {
@@ -28,8 +34,7 @@ export class WebpackTranslateLoader implements TranslateLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent,
-  ],
+    LayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -45,7 +50,11 @@ export class WebpackTranslateLoader implements TranslateLoader {
         provide: TranslateLoader,
         useClass: WebpackTranslateLoader
       }
-    })
+    }),
+    NavbarModule,
+    FooterModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+
   ],
   providers: [
     {

@@ -5,11 +5,13 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {CommonModule} from '@angular/common';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
+import {SplashComponent} from '@app/components/splash/splash.component';
 
 @NgModule({
-  declarations: [ LoaderComponent],
-  imports: [MaterialModule, NgxSpinnerModule, FlexLayoutModule, CommonModule, FormsModule],
-  exports: [MaterialModule, NgxSpinnerModule, FlexLayoutModule, LoaderComponent, FormsModule],
+  declarations: [ LoaderComponent, SplashComponent],
+  imports: [MaterialModule, NgxSpinnerModule, FlexLayoutModule, CommonModule, FormsModule, TranslateModule],
+  exports: [MaterialModule, NgxSpinnerModule, FlexLayoutModule, CommonModule, FormsModule,  LoaderComponent, SplashComponent, TranslateModule],
   entryComponents: []
 })
 export class SharedModule {

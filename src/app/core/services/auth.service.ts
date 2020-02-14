@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
 import {catchError, map, mapTo, tap} from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -15,9 +15,9 @@ import {ApiResponseModel} from '@app/core/models/api.response.model';
 export class AuthService {
 
   private loggedUser: string;
-
+  userInfoSubject = new BehaviorSubject('');
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  currentUser = {};
+ // currentUser = {};
 
   constructor(
     private http: HttpClient,
@@ -41,7 +41,8 @@ export class AuthService {
     ).subscribe((res: any) => {
         this.doLoginUser(user.email, res);
         this.getUserProfile().subscribe((res) => {
-          this.currentUser = res;
+          this.userInfoSubject.next(res);
+          //this.currentUser = res;
           this.storeUserInfo(res);
           this.router.navigate(['/'])
         })

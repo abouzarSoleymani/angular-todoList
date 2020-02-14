@@ -1,0 +1,8 @@
+.ng-scroll-content {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+ng-scrollbar {
+  flex-grow: 1;
+}

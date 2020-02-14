@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {SharedModule} from '../../shared/shared.module';
 import {ContentComponent} from './content.component';
+import {SharedModule} from '@app/shared/shared.module';
 
 @NgModule({
     declarations: [
-        ContentComponent
+        ContentComponent,
     ],
     imports     : [
         RouterModule,
-        SharedModule
+        SharedModule,
     ],
     exports     : [
         ContentComponent

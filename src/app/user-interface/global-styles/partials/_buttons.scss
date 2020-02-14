@@ -1,0 +1,38 @@
+.eval-button {
+
+  cursor: pointer;
+  padding: 0 30px !important;
+  min-width: 120px !important;
+  box-shadow: 0 2px 4px 0 $shadow-color;
+
+  color: $primary-text-color-white !important;
+  background: $primary-color !important;
+  font-size: $primary-font-size !important;
+  border-radius: $border-radius !important;
+
+  &[disabled],
+  &.disabled {
+    box-shadow: none;
+    color: $primary-text-color-disabled !important;
+    background: $primary-color-disabled !important;
+  }
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &.eval-button-outline {
+    box-shadow: none;
+    background: transparent !important;
+    color: $primary-color !important;
+    border: 1px solid $primary-color !important;
+  }
+
+  &.eval-button-gray {
+    color: $primary-color-white !important;
+    background: $secondary-color-2 !important;
+   // box-shadow: 0 2px 8px 0 $shadow-color-2  !important;
+    box-shadow: 0 3px 1px -2px $shadow-color-2, 0 2px 2px 0 $shadow-color-2, 0 1px 5px 0 $shadow-color-2;
+  }
+}

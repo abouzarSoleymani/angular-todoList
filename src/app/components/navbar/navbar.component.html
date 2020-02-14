@@ -1,0 +1,12 @@
+<mat-toolbar class="toolbar">
+    <h4 class="title">Todo App <span *ngIf="authService.isLoggedIn()"> ({{userInfo?.name}}) </span></h4>
+    <div class="container-date">
+      <div class="dates">
+        <span>{{myDate | date:'yy/MM/dd'}}</span>
+        <span>{{myDate | jdate:'yy/m/d' }}</span>
+      </div>
+      <div class="time"> {{time | date:'h:mm:ss a'}}</div>
+    </div>
+  <a  *ngIf="authService.isLoggedIn()" class="logout" (click)="logoutUser()">logout</a>
+
+</mat-toolbar>

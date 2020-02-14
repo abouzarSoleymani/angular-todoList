@@ -1,0 +1,15 @@
+<div class="container-tasks">
+  <!-- Uncompleted tasks -->
+  <ul class="todo" id="todo">
+    <ng-container *ngFor="let task of tasks">
+      <app-todo-item *ngIf="!task.completed" [task] = task (removedTask)="getAllTasks()"></app-todo-item>
+    </ng-container>
+  </ul>
+
+  <!-- Completed tasks -->
+  <ul class="todo" id="completed">
+    <ng-container *ngFor="let task of tasks">
+      <app-todo-item *ngIf="task.completed" (removedTask)="getAllTasks()" [task] = task></app-todo-item>
+    </ng-container>
+  </ul>
+</div>

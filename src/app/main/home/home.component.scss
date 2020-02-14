@@ -1,10 +1,12 @@
-.container-app{
-  //padding-top: 56px;
+.container-home{
+  padding-top: 80px;
   display: flex;
-  justify-content: center;
+  //justify-content: center;
   flex-direction: column;
   //align-items: center;
   width: 100%;
- // height: calc(100vh - 56px);
+  height: calc(100vh - 80px);
+ // height:100vh;
+  background: #edf0f1;
 }
 

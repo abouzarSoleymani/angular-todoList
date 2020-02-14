@@ -1,11 +1,8 @@
 export enum Icons {
     Close = 'close',
     Done = 'done',
+    Back = 'back',
+    Add = 'add',
     Edit = 'edit',
-    EvalEdit = 'eval-edit',
-    EvalComparison = 'eval-comparison',
-    EvalEvaluation = 'eval-evaluation',
-    EvalSend = 'eval-send',
-    EvalShow = 'eval-show',
-    ArrowRight = 'arrow-right'
+    Bin = 'bin',
 }

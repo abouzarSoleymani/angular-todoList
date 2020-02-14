@@ -1,0 +1,10 @@
+<div class="task-input-header">
+  <form [formGroup]="taskInputForm" (ngSubmit)="addTask()">
+
+  <input type="text"  formControlName="title" placeholder="Enter an activity.." id="item">
+  <button id="add" type="submit">
+    <mat-icon svgIcon="add" class="add-task"></mat-icon>
+  </button>
+
+  </form>
+</div>

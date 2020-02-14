@@ -29,7 +29,7 @@ export class ApiService {
   public get<T>(path: string, config?: ApiConfig): Observable<T> {
     return this.http.get(
       ServiceTool.api(path, config && config.login ? 'auth' : null),{headers: this.getHeaders(config)}
-    ).pipe(map( (response: any) => ServiceTool.processResponse<T>(response.data)), catchError(ApiService.formatErrors));
+    ).pipe(map( (response: any) => ServiceTool.processResponse<T>(response)), catchError(ApiService.formatErrors));
   }
 
 
@@ -56,7 +56,7 @@ export class ApiService {
 
     return this.http.put<T>(
       ApiService.getApiPath(path),
-      JSON.stringify(body)
+      body
     ).pipe(catchError(ApiService.formatErrors));
   }
 

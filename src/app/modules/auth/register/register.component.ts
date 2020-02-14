@@ -93,8 +93,7 @@ export class RegisterComponent implements OnInit {
     }
     this.authService.register(registerValue).subscribe((res) => {
       if (res) {
-        console.log(res)
-        this.messageService.showErrorMessage('ثبت نام کاربر با موفقیت انجام شد');
+        this.messageService.showErrorMessage('user registered successfully');
         this.registerForm.reset()
         this.router.navigate(['auth/login']);
       }

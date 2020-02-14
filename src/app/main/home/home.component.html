@@ -1,4 +1,4 @@
-<div class="container-app">
-  <app-slider-bootcamps></app-slider-bootcamps>
-  <app-latests-bootcamps></app-latests-bootcamps>
+<div class="container-home">
+  <app-todo-input (addedNewTask)="addedNewTask($event)" ></app-todo-input>
+  <app-todo-list-container #todoListContainer></app-todo-list-container>
 </div>

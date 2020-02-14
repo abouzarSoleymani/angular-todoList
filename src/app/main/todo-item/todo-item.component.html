@@ -1,0 +1,6 @@
+<li><span>{{task.title}}</span>
+  <div class="buttons">
+    <button class="remove" (click)="removeTask(task._id)"><mat-icon svgIcon="bin"></mat-icon></button>
+    <button class="complete"  (click)="completeTask(task)" [ngClass]="task.completed? 'completed': ''" ><mat-icon svgIcon="done"></mat-icon></button>
+  </div>
+</li>

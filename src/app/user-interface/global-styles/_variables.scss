@@ -1,0 +1,52 @@
+$primary-font: iranyekan;
+$primary-font-size: 14px;
+$secondary-font-size: 12px;
+$small-font-size: 10px;
+$too-small-font-size: 8px;
+$large-font-size: 16px;
+$too-large-font-size: 18px;
+
+$color-green: rgb(78, 199, 104);
+$color-red: rgb(255, 0, 0);
+
+$primary-text-color-white: white;
+$primary-text-color-black: black;
+$primary-text-color-3: rgb(117, 117, 117);
+$primary-text-color-disabled: rgb(128, 128, 128);
+
+$primary-color: rgb(245, 166, 35);
+$primary-color-2: rgb(55, 75, 113);
+$primary-color-2-lighter: rgb(79, 96, 129);
+$primary-color-white: rgb(255, 255, 255);
+$primary-color-white-light: rgba(255, 255, 255, 0.6);
+$primary-color-4: rgb(201, 91, 22);
+$primary-color-disabled: rgb(248, 198, 114);
+
+$secondary-color: rgb(128, 128, 128);
+$secondary-color-2: rgb(172, 172, 172);
+$secondary-color-3: rgb(202, 202, 202);
+$secondary-color-4: rgb(148, 148, 148);
+$secondary-color-light: rgb(198, 198, 198);
+$secondary-color-lighter: rgb(239, 239, 239);
+$secondary-color-dark: rgb(131, 131, 131);
+
+$border-radius: 0.6em;
+$border-color: rgb(151, 151, 151);
+
+$shadow-color: rgb(128, 128, 128, .1);
+$shadow-color-2: rgb(249, 239, 239, .13);
+$text-shadow-color: rgb(255, 255, 255, .5);
+
+$DESKTOP_SM_MIN: 727px;
+$DESKTOP_MD_MIN: 787px;
+$DESKTOP_LG_MIN: 871px;
+$DESKTOP_XL_MIN: 920px;
+$DESKTOP_XXL_MIN: 1149px;
+$DESKTOP_MIN_WIDTH: 614px;
+$DESKTOP_XS_MIN: $DESKTOP_MIN_WIDTH;
+
+$DESKTOP_XS_MAX: $DESKTOP_SM_MIN - 1px;
+$DESKTOP_SM_MAX: $DESKTOP_MD_MIN - 1px;
+$DESKTOP_MD_MAX: $DESKTOP_LG_MIN - 1px;
+$DESKTOP_LG_MAX: $DESKTOP_XL_MIN - 1px;
+$DESKTOP_XL_MAX: $DESKTOP_XXL_MIN - 1px;

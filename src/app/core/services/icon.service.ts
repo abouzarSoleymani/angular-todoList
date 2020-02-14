@@ -13,7 +13,7 @@ export class IconService {
   ) { }
 
   public registerIcons(): void {
-    this.loadIcons(Object.values(Icons), './assets/icons/public-icons');
+    this.loadIcons(Object.values(Icons), './assets/icons');
   }
 
   private loadIcons(iconKeys: string[], iconUrl: string): void {

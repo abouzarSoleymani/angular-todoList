@@ -29,10 +29,8 @@ private formSubmitAttempt: boolean;
     public router: Router
 ) {
     this.loginForm = this.fb.group({
-      email: ['' ],
-      password: [''],
-      // email: ['', [Validators.required, Validators.email] ],
-      // password: ['', [Validators.required, Validators.minLength(5), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]],
+      email: ['', [Validators.required, Validators.email] ],
+      password: ['', [Validators.required, Validators.minLength(5), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]],
     })
   }
 

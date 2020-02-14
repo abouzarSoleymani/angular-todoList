@@ -1,0 +1,12 @@
+.page-content {
+  padding: 16px;
+  box-sizing: border-box;
+
+  &.no-padding {
+    padding: 0;
+  }
+}
+
+.page-sides-padding {
+  padding: 0 16px;
+}

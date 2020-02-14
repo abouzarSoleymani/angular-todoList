@@ -1,0 +1,111 @@
+ li {
+  width: 100%;
+  min-height: 50px;
+  float: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+  line-height: 22px;
+
+  background: #fff;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.10);
+  margin: 0 0 10px 0;
+  padding: 14px 100px 14px 14px;
+  word-break: break-word;
+}
+
+// li:last-of-type {
+//  margin: 0;
+//}
+
+ li .buttons {
+  width: 100px;
+  height: 50px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+ li .buttons button {
+  width: 50px;
+  height: 50px;
+  float: left;
+  background: none;
+  position: relative;
+  border: 0px;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+ li .buttons button:last-of-type:before {
+  content: '';
+  width: 1px;
+  height: 30px;
+  background: #edf0f1;
+
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+ li .buttons button ::ng-deep svg {
+  width: 22px;
+  height: 22px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin: -11px 0 0 -11px;
+}
+
+ li .buttons button svg .fill {
+  transition: fill 0.2s ease;
+}
+
+ li .buttons button.remove ::ng-deep svg  {
+  fill: #c0cecb;
+}
+
+ li .buttons button.remove:hover ::ng-deep svg {
+  fill: #e85656;
+}
+
+ li .buttons button.complete ::ng-deep svg {
+  fill: #25b99a;
+}
+
+ li .buttons button.complete ::ng-deep svg {
+   border-radius: 11px;
+   border: 1.5px solid #25b99a;
+   fill: #25b99a;
+   transition: background 0.2s ease;
+   padding: 3px;
+ }
+
+
+
+li .buttons button.complete:hover ::ng-deep svg  {
+  background: #25b99a;
+   fill: #fff;
+ }
+
+li .buttons button.completed ::ng-deep svg  {
+   fill: #fff;
+ }
+
+ li .buttons button.completed ::ng-deep svg {
+   background: #25b99a;
+   border: 0px;
+ }
+
+ li .buttons button.completed:hover  ::ng-deep svg {
+   background: rgba(37, 185, 154, 0.75);
+ }

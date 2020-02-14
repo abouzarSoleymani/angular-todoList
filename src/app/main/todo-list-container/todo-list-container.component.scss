@@ -1,0 +1,48 @@
+.container-tasks {
+  max-width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  background: #edf0f1;
+}
+
+ul.todo {
+  width: 100%;
+  float: left;
+}
+
+ul.todo#completed {
+  position: relative;
+  padding: 60px 0 30px 0;
+}
+
+ul.todo#completed:before {
+  content: '';
+  width: 150px;
+  height: 1px;
+  background: #d8e5e0;
+
+  position: absolute;
+  top: 30px;
+  left: 50%;
+
+  margin: 0 0 0 -75px;
+}
+
+ul.todo#todo:empty:after {
+  content: 'You have nothing to-do!';
+  margin: 15px 0 0 0;
+}
+
+ul.todo#completed:empty:after {
+  content: 'You have yet to complete any tasks.';
+}
+
+ul.todo#todo:after,
+ul.todo#completed:after {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+}
